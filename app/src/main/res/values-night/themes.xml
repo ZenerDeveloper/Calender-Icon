@@ -1,0 +1,9 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.CalendarIcon" parent="">
+        <!-- Customize your theme here. -->
+        <item name="android:background">#ff000000</item>
+        <item name="android:textColor">#ffaaaaaa</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+</resources>

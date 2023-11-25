@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Calendar</string>
+    <string name="preference_file_key">Preferences</string>
+    <string name="preference_package">Package</string>
+    <string name="preference_component">Component</string>
+
+    <string name="recommended_label">Recommended</string>
+    <string name="all_label">All apps</string>
+</resources>

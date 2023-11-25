@@ -1,0 +1,82 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'io.github.zenerdeveloper.android.calendaricon'
+    compileSdk 33
+    signingConfigs {
+        release {
+            if(!project.hasProperty("ANDROID_KEY_ALIAS")) {
+                debug
+            } else {
+                keyAlias ANDROID_KEY_ALIAS
+                keyPassword ANDROID_KEY_PASSWORD
+                storeFile file(ANDROID_STORE_FILE)
+                storePassword ANDROID_STORE_PASSWORD
+            }
+        }
+        packagingOptions.exclude '**/*.kotlin_*'
+        packagingOptions.exclude 'kotlin-tooling-metadata.json'
+        packagingOptions.exclude 'META-INF/**'
+    }
+
+
+    defaultConfig {
+        applicationId "io.github.zenerdeveloper.android.calendaricon"
+        minSdk 1
+        targetSdk 33
+        versionCode 1
+        versionName "1.0.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+            applicationIdSuffix '.debug'
+            versionNameSuffix '-debug'
+        }
+    }
+
+    flavorDimensions = ["version"]
+    productFlavors {
+        cupcake {
+            // Assigns this product flavor to the "version" flavor dimension.
+            // If you are using only one dimension, this property is optional,
+            // and the plugin automatically assigns all the module's flavors to
+            // that dimension.
+            dimension "version"
+            applicationIdSuffix ".cupcake"
+            versionNameSuffix "-cupcake"
+            minSdk 1
+        }
+        oreo {
+            dimension "version"
+            minSdk 26
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
